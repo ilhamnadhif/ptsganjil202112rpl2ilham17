@@ -2,10 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class DetailMoviePage extends StatelessWidget {
-  final String title, desc, releaseDate, imagePath, imageBackground;
+  final String title,
+      desc,
+      releaseDate,
+      imagePath,
+      imageBackground,
+      popularity,
+      language;
   const DetailMoviePage(
       {required this.title,
       required this.desc,
+      required this.language,
+      required this.popularity,
       required this.imagePath,
       required this.imageBackground,
       required this.releaseDate});
@@ -15,48 +23,113 @@ class DetailMoviePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFF18162E),
       body: Container(
-        child: Column(
+        child: ListView(
           children: [
-            Container(
-              child: ShaderMask(
-                shaderCallback: (rect) {
-                  return LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.black, Colors.transparent],
-                  ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
-                },
-                blendMode: BlendMode.dstIn,
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.4,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      alignment: Alignment(0.5, 0),
-                      image: NetworkImage(imageBackground),
+            Column(
+              children: [
+                Container(
+                  child: ShaderMask(
+                    shaderCallback: (rect) {
+                      return LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Colors.black, Colors.transparent],
+                      ).createShader(
+                          Rect.fromLTRB(0, 0, rect.width, rect.height));
+                    },
+                    blendMode: BlendMode.dstIn,
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.4,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(imageBackground),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-            Card(
-              elevation: 10,
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.width * 0.15,
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: Column(
-                      children: [Text("data"), Text("data")],
-                    )),
-                    Container(
-                      child: ,
-                    )
-                  ],
+                Card(
+                  elevation: 10,
+                  color: Color(0xFF1D1C3B),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    height: 150,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  title,
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Release date: " + releaseDate,
+                                  style: TextStyle(color: Color(0xFF4F4F6B)),
+                                ),
+                                Text(
+                                  "language: " + language,
+                                  style: TextStyle(color: Color(0xFF4F4F6B)),
+                                ),
+                                Text(
+                                  "popularity: " + popularity,
+                                  style: TextStyle(color: Color(0xFF4F4F6B)),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          child: Text(
+                            "9.0",
+                            style: TextStyle(
+                                color: Color(0xFFE7C54D),
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+                Card(
+                  elevation: 10,
+                  color: Color(0xFF1D1C3B),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Description:",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            desc,
+                            style: TextStyle(color: Color(0xFFB2B2B2)),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

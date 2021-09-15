@@ -71,8 +71,10 @@ class _MoviePageState extends State<MoviePage> {
     String releaseDate = item['release_date'];
     String language = item['original_language'];
     String voteAverage = item['vote_average'].toString();
+    String popularity = item['popularity'].toString();
     String imagePath = "https://image.tmdb.org/t/p/w500" + item['poster_path'];
-    String imageBackground = "https://image.tmdb.org/t/p/w500" + item['backdrop_path'];
+    String imageBackground =
+        "https://image.tmdb.org/t/p/w500" + item['backdrop_path'];
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: GestureDetector(
@@ -86,6 +88,8 @@ class _MoviePageState extends State<MoviePage> {
                 releaseDate: releaseDate,
                 imagePath: imagePath,
                 imageBackground: imageBackground,
+                language: language,
+                popularity: popularity,
               ),
             ),
           );
